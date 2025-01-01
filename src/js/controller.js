@@ -15,16 +15,10 @@ const timeout = function (s) {
   });
 };
 
-// const API_KEY = '198a1e55-d991-4de3-8119-97018d0e7609';
 const BASE_URL = 'https://forkify-api.jonas.io/api/v2/recipes';
 const url = `${BASE_URL}?search=pizza`;
 console.log(url);
 console.log(url);
-
-// NEW API URL (instead of the one shown in the video)
-// https://forkify-api.jonas.io
-
-///////////////////////////////////////
 
 async function controlRecipes() {
   try {
