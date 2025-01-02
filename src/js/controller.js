@@ -16,7 +16,7 @@ async function controlRecipes() {
     // 2) TODO: rendering the recipe
     recipeView.render(model.state.recipe);
   } catch (err) {
-    console.log(err);
+    recipeView.renderError();
   }
 }
 // 3) TODO: render the recipe on load and hashchange
