@@ -43,5 +43,7 @@ export const loadSearchResults = async function (query) {
         image: rec.image_url,
       };
     });
-  } catch (err) {}
+  } catch (err) {
+    console.log(err);
+  }
 };
