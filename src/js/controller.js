@@ -3,8 +3,9 @@ import recipeView from './views/recipe-view.js';
 
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
+import searchView from './views/search-view.js';
 
-async function controlRecipes() {
+const controlRecipes = async function () {
   try {
     const id = window.location.hash.slice(1);
     if (!id) return;
@@ -18,9 +19,29 @@ async function controlRecipes() {
   } catch (err) {
     recipeView.renderError();
   }
-}
+};
+
+const controlSearchResults = async function () {
+  try {
+    // TODO: Get Search query
+    const query = searchView.getQuery();
+    if (!query) return;
+
+    // TODO: Load search results
+    await model.loadSearchResults(query);
+
+    // TODO: Render the results
+    console.log(model.state.search.result);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+controlSearchResults();
+
 // 3) TODO: render the recipe on load and hashchange
 const init = function () {
   recipeView.addHandlerRender(controlRecipes);
+  searchView.addHandlerSearch(controlSearchResults);
 };
 init();
