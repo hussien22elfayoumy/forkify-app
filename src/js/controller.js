@@ -50,8 +50,6 @@ const controlSearchResults = async function () {
   }
 };
 
-controlSearchResults();
-
 const controlPagination = function (page) {
   // TODO: Render  the NEW results
   searchResultView.render(model.getSearchResultsPage(page));
@@ -60,9 +58,16 @@ const controlPagination = function (page) {
   paginationView.render(model.state.search);
 };
 
-// 3) TODO: render the recipe on load and hashchange
+const controlServings = function (newServings) {
+  // TODO: Updata the recipe servings (in state)
+  model.updateServings(newServings);
+  // TODO: updata the recipe view
+  recipeView.render(model.state.recipe);
+};
+
 const init = function () {
   recipeView.addHandlerRender(controlRecipes);
+  recipeView.addHandlerUpdataServings(controlServings);
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination);
 };
