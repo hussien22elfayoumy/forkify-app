@@ -9,7 +9,7 @@ export const state = {
     page: 1,
     resultsPerPage: RES_PER_PAGE,
   },
-  goto: 1,
+  bookmarks: [],
 };
 
 export const loadRecipe = async function (id) {
@@ -27,7 +27,10 @@ export const loadRecipe = async function (id) {
       cookingTime: recipe.cooking_time,
       ingredients: recipe.ingredients,
     };
-    // console.log(state.recipe);
+
+    if (state.bookmarks.some(bookmark => bookmark.id === id))
+      state.recipe.bookmarked = true;
+    else state.recipe.bookmarked = false;
   } catch (err) {
     throw err;
   }
@@ -67,4 +70,15 @@ export const updateServings = function (newServings) {
   );
 
   state.recipe.servings = newServings;
+};
+
+export const addBookmark = function (recipe) {
+  // TODO: Add bookmark
+
+  state.bookmarks.push(recipe);
+
+  // TODO: Mark current recipe as bookmark
+  if (recipe.id === state.recipe.id) {
+    state.recipe.bookmarked = true;
+  }
 };
