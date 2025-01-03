@@ -49,7 +49,7 @@ export const loadSearchResults = async function (query) {
         image: rec.image_url,
       };
     });
-    model.state.search.page = 1;
+    state.search.page = 1;
   } catch (err) {
     console.log(err);
   }
@@ -77,8 +77,15 @@ export const addBookmark = function (recipe) {
 
   state.bookmarks.push(recipe);
 
-  // TODO: Mark current recipe as bookmark
-  if (recipe.id === state.recipe.id) {
-    state.recipe.bookmarked = true;
-  }
+  // TODO: Mark current recipe as bookmarked
+  if (recipe.id === state.recipe.id) state.recipe.bookmarked = true;
+};
+
+export const deleteBookmark = function (id) {
+  // TODO: Delete bookmark
+  const index = state.bookmarks.findIndex(el => el.id === id);
+  state.bookmarks.splice(index, 1);
+
+  // TODO: Mark current recipe as NOT bookmarked
+  if (id === state.recipe.id) state.recipe.bookmarked = false;
 };
