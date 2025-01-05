@@ -102,6 +102,9 @@ const controlAddRecipe = async function (recipe) {
     // TODO: render the bookmarks with new add own recipe
     bookmarksView.render(model.state.bookmarks);
 
+    // TODO: change the ID in the url
+    window.history.pushState(null, '', `${model.state.recipe.id}`);
+
     // TODO: render sucess msg
     addRecipeView.renderMessage();
 
